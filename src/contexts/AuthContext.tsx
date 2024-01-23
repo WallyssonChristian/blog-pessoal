@@ -2,6 +2,9 @@ import { ReactNode, createContext, useState } from "react"
 import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
 
+{/* Contexto que lida com Autenticação*/}
+
+{/* Definição da interface para o contexto de autenticação */}
 interface AuthContextProps {
     usuario: UsuarioLogin
     handleLogout(): void
@@ -9,13 +12,17 @@ interface AuthContextProps {
     isLoading: boolean
 }
 
+{/* Interface para as propriedades do provedor de autenticação */}
 interface AuthProvidersProps {
     children: ReactNode
 }
 
+{/* Criação do contexto de autenticação */}
 export const AuthContext = createContext({} as AuthContextProps)
 
+{/* Componente do provedor de autenticação */}
 export function AuthProvider({ children }: AuthProvidersProps) {
+    {/* Estado para armazenar as informações do usuário */}
     const [usuario, setUsuario] = useState<UsuarioLogin>({
         id: 0,
         nome: '',
@@ -25,12 +32,17 @@ export function AuthProvider({ children }: AuthProvidersProps) {
         token: ''
     })
 
+    {/* Estado para controlar o estado de carregamento */}
     const [isLoading, setIsLoading] = useState(false)
 
+    {/* Função Assincrona para lidar com o processo de login */}
     async function handleLogin(userLogin: UsuarioLogin) {
+
+        {/* Inicia a animação de Loading */}
         setIsLoading(true)
 
         try {
+            {/* Chama a função de Login do Service, enviando o Caminho, o Objeto e a Função */}
             await login(`/usuarios/logar`, userLogin, setUsuario)
             alert("Usuário autenticado com sucesso!")
             setIsLoading(false)
@@ -39,6 +51,7 @@ export function AuthProvider({ children }: AuthProvidersProps) {
             alert("Erro ao logar.")
             setIsLoading(false)
         }
+        
     }
 
     function handleLogout() {

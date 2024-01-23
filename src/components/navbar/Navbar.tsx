@@ -16,15 +16,19 @@ function Navbar() {
 
   return (
     <>
-      <div className='w-full bg-indigo-900 text-white flex justify-center py-4'>
+      <div className='w-full bg-indigo-900 text-white flex justify-center p-5'>
+
         <div className="container flex justify-between text-lg">
-          <Link to='/home' className="text-2xl font-bold">Blog Pessoal</Link>
+
+          <Link to='/home' className="text-2xl font-bold hover:text-blue-300">Blog Pessoal</Link>
+
           <div className="flex gap-4">
-            Postagens 
-            Temas 
-            Cadastrar tema 
-            Perfil 
-            <Link to='' onClick={logout} className="hover:underline">Sair</Link>
+            <Link to='/postagem' className="hover:text-blue-300">Nova Postagem</Link>
+            <Link to='/temas' className="hover:text-blue-300">Temas</Link>
+            <Link to='/cadastrartema' className="hover:text-blue-300">Cadastrar Tema</Link>
+            <Link to='' className="hover:text-blue-300">Perfil</Link>
+            <Link to='' className="">Login</Link>
+            <Link to='' onClick={logout} className="hover:text-red-300">Sair</Link>
           </div>
 
         </div>

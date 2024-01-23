@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import Usuario from "../../models/Usuario"
 import { useNavigate } from "react-router-dom"
-import { Target } from "@phosphor-icons/react"
 import { cadastrarUsuario } from "../../services/Service"
 import { RotatingLines } from "react-loader-spinner"
 
@@ -9,10 +8,13 @@ function Cadastro() {
 
     const navigate = useNavigate()
 
+    {/*  */}
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    {/*  */}
     const [confirmaSenha, setConfirmaSenha] = useState<string>("")
 
+    {/*  */}
     const [usuario, setUsuario] = useState<Usuario>({
         id: 0,
         nome: '',
@@ -21,16 +23,19 @@ function Cadastro() {
         foto: ''
     })
 
+    {/*  */}
     useEffect(() => {
         if (usuario.id !== 0) {
             retornar()
         }
     }, [usuario])
 
+    {/*  */}
     function retornar() {
         navigate('/login')
     }
 
+    {/*  */}
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuario({
             ...usuario,
@@ -38,16 +43,20 @@ function Cadastro() {
         })
     }
 
+    {/*  */}
     function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
         setConfirmaSenha(e.target.value)
         console.log(confirmaSenha)
     }
 
+    {/*  */}
     async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
+        {/*  */}
         if (confirmaSenha === usuario.senha && usuario.senha.length >= 8) {
 
+            {/* Inicia a animação de Loading */}
             setIsLoading(true)
 
             try {
@@ -55,6 +64,8 @@ function Cadastro() {
                 alert('Usuário cadastrado com sucesso!!!')
             } catch (error) {
                 alert('Erro ao cadastrar o usuário!')
+                console.log(error);
+                
             }
         } else {
             alert('Dados estão inconsistentes. Verifique as informações do cadastro.')
