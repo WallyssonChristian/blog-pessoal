@@ -13,12 +13,15 @@ import FormularioPostagem from './components/postagens/formularioPostagem/Formul
 import ListaPostagem from './components/postagens/listaPostagem/ListaPostagem.tsx';
 import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem.tsx';
 import Perfil from './paginas/perfil/Perfil.tsx';
+import { ToastContainer } from 'react-toastify'
 
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <ToastContainer />
         <BrowserRouter>
           <Navbar />
 
