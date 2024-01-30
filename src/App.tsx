@@ -6,10 +6,13 @@ import Cadastro from './paginas/cadastro/Cadastro.tsx';
 import Home from './paginas/home/Home.tsx';
 import Login from './paginas/login/Login.tsx';
 import { AuthProvider } from './contexts/AuthContext.tsx';
-import Postagem from './paginas/postagem/Postagem.tsx';
 import ListaTemas from './components/temas/listaTemas/ListaTemas.tsx';
 import FormularioTema from './components/temas/formularioTema/FormularioTema.tsx';
-import DeletarTema from './components/temas/deletarTemas/DeletarTema.tsx';
+import DeletarTema from './components/temas/deletarTema/DeletarTema.tsx';
+import FormularioPostagem from './components/postagens/formularioPostagem/FormularioPostagem.tsx';
+import ListaPostagem from './components/postagens/listaPostagem/ListaPostagem.tsx';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem.tsx';
+import Perfil from './paginas/perfil/Perfil.tsx';
 
 
 function App() {
@@ -25,11 +28,18 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path='/cadastro' element={<Cadastro />} />
-              <Route path='/postagem' element={<Postagem />} />
+                {/** Rotas Postagem */}
+              <Route path='/postagens' element={<ListaPostagem />} />
+              <Route path='/cadastroPostagem' element={<FormularioPostagem/>}/>
+              <Route path='/cadastroPostagem/:id' element={<FormularioPostagem />} />
+              <Route path='/deletarPostagem/:id' element={<DeletarPostagem/>}/>
+                {/** Rotas Tema */}
               <Route path='/temas' element={<ListaTemas />} />
               <Route path="/cadastroTema" element={<FormularioTema />} />
               <Route path="/editarTema/:id" element={<FormularioTema />} />
               <Route path="/deletarTema/:id" element={<DeletarTema />} />
+
+              <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
 

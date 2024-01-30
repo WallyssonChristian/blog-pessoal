@@ -1,21 +1,24 @@
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerts";
 
 function Navbar() {
 
   const navigate = useNavigate();
 
-  const {handleLogout} = useContext(AuthContext)
+  const { usuario, handleLogout } = useContext(AuthContext)
 
-  function logout(){
+  let component: ReactNode
+
+  function logout() {
     handleLogout();
-    alert('O usuário foi desconectado com sucesso!')
+    ToastAlerta('O usuário foi desconectado com sucesso!', 'sucesso')
     navigate('/login')
   }
 
-  return (
-    <>
+  if (usuario.token !== "") {
+    component = (
       <div className='w-full bg-indigo-900 text-white flex justify-center p-5'>
 
         <div className="container flex justify-between text-lg">
@@ -23,10 +26,10 @@ function Navbar() {
           <Link to='/home' className="text-2xl font-bold hover:text-blue-300">Blog Pessoal</Link>
 
           <div className="flex gap-4">
-            <Link to='/postagem' className="hover:text-blue-300">Nova Postagem</Link>
+            <Link to='/postagens' className="hover:text-blue-300">Postagens</Link>
             <Link to='/temas' className="hover:text-blue-300">Temas</Link>
-            <Link to='/cadastrartema' className="hover:text-blue-300">Cadastrar Tema</Link>
-            <Link to='' className="hover:text-blue-300">Perfil</Link>
+            <Link to='/cadastroTema' className="hover:text-blue-300">Cadastrar Tema</Link>
+            <Link to='/perfil' className="hover:text-blue-300">Perfil</Link>
             <Link to='' className="">Login</Link>
             <Link to='' onClick={logout} className="hover:text-red-300">Sair</Link>
           </div>
@@ -34,6 +37,12 @@ function Navbar() {
         </div>
 
       </div>
+    )
+  }
+
+  return (
+    <>
+      {component}
     </>
 
   )

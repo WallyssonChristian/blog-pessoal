@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from "react"
 import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
+import { ToastAlerta } from "../utils/ToastAlerts"
 
 {/* Contexto que lida com Autenticação*/}
 
@@ -44,11 +45,11 @@ export function AuthProvider({ children }: AuthProvidersProps) {
         try {
             {/* Chama a função de Login do Service, enviando o Caminho, o Objeto e a Função */}
             await login(`/usuarios/logar`, userLogin, setUsuario)
-            alert("Usuário autenticado com sucesso!")
+            ToastAlerta("Usuário autenticado com sucesso!", 'sucesso')
             setIsLoading(false)
         } catch (error) {
             console.log(error)
-            alert("Erro ao logar.")
+            ToastAlerta("Erro ao logar.", 'erro')
             setIsLoading(false)
         }
         

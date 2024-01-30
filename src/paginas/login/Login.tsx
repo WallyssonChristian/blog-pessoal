@@ -2,6 +2,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext";
 import UsuarioLogin from "../../models/UsuarioLogin";
+import './Login.css'
 
 function Login() {
 
@@ -33,10 +34,10 @@ function Login() {
     
     return (
         <>
-            <div className="grid grid-cols-2 h-screen">
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
                 {/* Left part of site */}
                 <div id='login' className="
-                grid place-items-center font-bold w-full">
+                flex justify-center items-center flex-col w-1/2 gap-4">
                     <form className="
                     flex justify-center place-items-center flex-col
                     gap-4"
@@ -80,16 +81,14 @@ function Login() {
                         </button>
 
                         <hr className="border-slate-800 w-full" />
-                        <p>Ainda não tem uma conta? <Link to='/Cadastro' className="">Cadastre-se</Link> </p>
+                        <p>Ainda não tem uma conta? <Link to='/Cadastro' className="text-blue-500 hover:text-blue-700 hover:underline">Cadastre-se</Link> </p>
                     </form>
 
                 </div>
 
 
                 {/* Right part of site */}
-                <div id='imagem' className="grid place-items-center w-full lg:col-span-1">
-                   < img src='https://ik.imagekit.io/Zabo/Blog-Pessoal/personagem-de-desenho-animado-de-ilustracao-vetorial-de-blogging_516790-1481.avif?updatedAt=1705578419077' alt='blog pessoal imagem'></img>
-                </div>
+                <div id='imagem' className="fundoLogin hidden lg:block">                </div>
 
 
             </div>
